@@ -57,6 +57,14 @@ The system allows users to upload any PDF document, break it down into semantic 
 
 ---
 
+## 📸 Notebook Interface Preview
+
+Here is a visual preview of the Google Colab Notebook interface and execution outputs:
+
+![PDF AI Assistant Colab Preview](screenshots/preview.png)
+
+---
+
 ## 📁 Repository Structure
 
 ```text
