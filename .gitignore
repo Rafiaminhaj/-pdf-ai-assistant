@@ -1,0 +1,20 @@
+# Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Data outputs & cache files
+*.pdf
+faiss_index/
+sentence_transformers/
+huggingface/
