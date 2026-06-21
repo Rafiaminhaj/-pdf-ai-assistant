@@ -76,6 +76,30 @@ Here is a visual preview of the Google Colab Notebook interface and execution ou
 
 ---
 
+## 🤖 n8n Workflow Automation Integration (Optional)
+
+You can easily scale this PDF RAG Assistant into a fully automated enterprise workflow using **n8n**. This allows you to automatically ingest PDFs from Google Drive, Slack, or Email, run the RAG pipeline, and deliver responses to your team.
+
+### n8n Automation Architecture
+```mermaid
+graph TD
+    Trigger[n8n Trigger: Webhook / Google Drive / Slack] --> |PDF File| ReadNode[n8n Binary Data / PDF Read Node]
+    ReadNode --> |Extract Text| ChunkNode[n8n Text Splitter Node]
+    ChunkNode --> |Generate Embeddings| VectorStore[n8n Vector Store Node: Qdrant / Supabase / Pinecone]
+    UserQuery[User Question via Slack / Webhook] --> |Query| AgentNode[n8n AI Agent Node]
+    VectorStore --> |Retrieved Context| AgentNode
+    AgentNode --> |Answer Response| SendNode[n8n Output: Send Slack Message / Email / API response]
+```
+
+### Steps to implement in n8n:
+1. **Trigger**: Use a `Webhook` or `Google Drive (On File Added)` node to detect new PDF uploads.
+2. **Document Loading**: Use the `Read Binary File` node to extract PDF metadata and text content.
+3. **Vector Database**: Connect a `Vector Store` node (e.g., **Supabase Vector**, **Qdrant**, or **Pinecone**) and pair it with an **Embeddings** model node (like OpenAI Embeddings or Hugging Face Inference API).
+4. **AI Agent**: Create an `AI Agent` node, assign it a chat model (e.g., OpenAI GPT-4o or Claude 3.5), and connect the Vector Store as a `Retriever Tool`.
+5. **Output**: Use a `Slack` or `Gmail` node to automatically send the generated response back to the user.
+
+---
+
 ## 🛠️ Local Installation (Optional)
 
 To run the builder script locally:
